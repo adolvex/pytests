@@ -1,0 +1,53 @@
+# Define a dictionary of foods with their corresponding calorie counts
+foods = {
+    "apple": 95,
+    "banana": 105,
+    "orange": 62,
+    "grapes": 67,
+    "avocado": 234,
+    "carrot": 41,
+    "celery": 10,
+    "spinach": 23,
+    "broccoli": 55,
+    "chicken breast": 165,
+    "salmon": 206,
+    "beef": 250,
+    "pasta": 131,
+    "rice": 130,
+    "quinoa": 120
+}
+
+# Define a function that sorts the foods by their calorie count
+def sort_by_calories(foods):
+    sorted_foods = sorted(foods.items(), key=lambda x: x[1])
+    return sorted_foods
+
+# Define a function that provides food recommendations based on calorie intake
+def recommend_foods(calories):
+    recommended_foods = []
+    for food, calorie_count in foods.items():
+        if calorie_count <= calories:
+            recommended_foods.append(food)
+    return recommended_foods
+
+# Get user input for sorting or recommending foods
+user_input = input("Would you like to sort the foods by calories or get food recommendations? Type 'sort' or 'recommend': ")
+
+# Sort the foods by calories if requested
+if user_input == "sort":
+    sorted_foods = sort_by_calories(foods)
+    for food, calorie_count in sorted_foods:
+        print(food.capitalize() + " has " + str(calorie_count) + " calories.")
+
+# Provide food recommendations if requested
+elif user_input == "recommend":
+    calorie_intake = int(input("How many calories are you looking to consume? "))
+    recommended_foods = recommend_foods(calorie_intake)
+    if recommended_foods:
+        print("Here are some food recommendations for you:")
+        for food in recommended_foods:
+            print("- " + food.capitalize())
+    else:
+        print("Sorry, there are no foods in our database that match your calorie requirements.")
+else:
+    print("Invalid input. Please try again.")
